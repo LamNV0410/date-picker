@@ -1,0 +1,51 @@
+.wrapper-defined-range {
+  margin: 24px 24px 0 0;
+  border-right: 1px solid #C3C4CA;
+
+  .left {
+    margin-right: 24px;
+  }
+
+  .defined-range-header {
+    padding-left: 24px;
+    color: #303134;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .defined-range-content {
+    min-width: 126px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+
+
+      li {
+        cursor: pointer;
+        padding: 0px 4px;
+        height: 30px;
+        margin: 6px 0;
+        list-style: none;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        padding-left: 24px;
+
+        &:last-child {}
+
+        &:hover {
+          background: #DEDEDE 0% 0% no-repeat padding-box;
+        }
+
+        &.active {
+          
+          background: #CCE5FF 0% 0% no-repeat padding-box;
+        }
+      }
+    }
+  }
+
+}
