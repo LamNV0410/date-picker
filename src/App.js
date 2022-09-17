@@ -8,14 +8,14 @@ function App() {
   }
 
   return (
-    <>
+    <ChakraProvider>
       <div>
         <Input type='tel' placeholder='Phone number' />
       </div>
       <div className="date-range-picker-calendar">
         <UnlinkedCalendar onDatesChange={onDatesChange} showDropdowns={false} />
       </div>
-    </>
+    </ChakraProvider>
   );
 }
 

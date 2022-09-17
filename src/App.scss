@@ -3,6 +3,10 @@ body {
   line-height: 1.6em;
   position: relative;
   margin: 0;
+  border-color: none;
+  border-width: 0;
+  border-style: none;
+  box-sizing: unset;
 }
 
 .navbar .nav-item {
@@ -621,6 +625,7 @@ input[type="text"] {
     max-width: 224px;
     font-size: 12px;
     min-width: 140px;
+    border-collapse: separate;
 
     thead {
       tr:first-child {
