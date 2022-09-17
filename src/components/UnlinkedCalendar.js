@@ -139,13 +139,12 @@ class UnlinkedCalendar extends React.Component {
 }
 
 
-export default class UnlinkedCalendarUI extends React.Component {
-  render() {
-    const uiProps = { ...this.props, component: UnlinkedCalendar }
-    return (
-      <>
-        <PickerUI {...uiProps} />
-      </>
-    );
+export default function UnlinkedCalendarUI(props) {
+  const onDateRangeClick = (startDate, endDate) => {
+    props.onDateRangeClick(startDate, endDate)
   }
+  const uiProps = { ...props, component: UnlinkedCalendar }
+  return (
+    <PickerUI {...uiProps} onDateRangeClick={onDateRangeClick} />
+  );
 }

@@ -4,7 +4,7 @@ import { interval } from "./utils";
 import { getDefaultState } from "./utils";
 import DefinedRange from './DefinedRange'
 import dayjs from "dayjs";
-import { ClearIcon } from './icons/ClearIcon'
+import { ClearIcon, ArrowRightIcon } from './icons'
 export default class PickerUI extends React.Component {
     state = getDefaultState();
     onDayMouseEnter = (day) => {
@@ -12,7 +12,6 @@ export default class PickerUI extends React.Component {
         const range = (day >= startDate) ? endDate || day : startDate;
         this.setState({ range });
     }
-
 
     onDayClick = (day) => {
         this.onClearSelection();
@@ -28,7 +27,6 @@ export default class PickerUI extends React.Component {
             range
         });
     }
-
     onClearSelection = () => {
         const day = null;
         const state = getDefaultState();
@@ -44,17 +42,35 @@ export default class PickerUI extends React.Component {
             type: null
         });
     }
-
+    
     dateLabel = () => {
         const { startDate, endDate } = this.state;
-        return startDate && endDate ? `${startDate.format("DD/MM/YYYY")} - ${endDate.format("DD/MM/YYYY")}` : "";
+        this.props.onDateRangeClick(this.state.startDate, this.state.endDate)
+        return (
+            <Box className="display-date-range">
+                {
+                    startDate && endDate ?
+                        (
+                            <>
+                                <span>
+                                    {startDate.format("DD/MM/YYYY")}
+                                </span>
+                                <ArrowRightIcon />
+                                <span>
+                                    {endDate.format("DD/MM/YYYY")}
+                                </span>
+                            </>
+                        ) : 'Select a start date'
+                }
+            </Box >
+        );
     }
     onActiveClicked = (id, value) => {
         this.renderDate(id);
     }
 
     onDefinedRangeClick = (from, to, id) => {
-        const isOpen = this.state.closedOrOpen === interval.OPEN;
+        const isOpen = this.state.closedOrOpen == interval.OPEN;
         const startDate = from;
         const endDate = to;
         const range = startDate || endDate;
@@ -102,6 +118,7 @@ export default class PickerUI extends React.Component {
     render() {
         const { onDayClick, onDayMouseEnter } = this;
         const props = { onDayClick, onDayMouseEnter, ...this.state, ...this.props };
+
         const { component: Component } = this.props;
         return (
             <>

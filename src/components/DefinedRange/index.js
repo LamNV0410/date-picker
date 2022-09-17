@@ -21,7 +21,7 @@ const Range = (props) => {
           <li
             key={index}
             onClick={() => handleRangeClicked(index, range.id, range.name)}
-            className={activeIndex == index ? 'active' : ''}>
+            className={activeIndex === index ? 'active' : ''}>
             <span>{range.name}</span>
           </li>
         ))

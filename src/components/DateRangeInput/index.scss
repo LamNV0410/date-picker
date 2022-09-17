@@ -1,0 +1,40 @@
+.date-range-input {
+    position: relative;
+    font-size: 14px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #3474E2;
+    border-radius: 6px;
+
+    input {
+        cursor: pointer;
+        height: 46px;
+        border: none;
+        line-height: 3;
+    }
+    input:focus{
+        outline: none;
+    }
+
+    &-arrow-icon {
+        width: 48px;
+        height: 46px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #FAFAFA 0% 0% no-repeat padding-box;
+        border-left: 1px solid #FAFAFA;
+        border-top: 1px solid #3474E2;
+        border-right: 1px solid #FAFAFA;
+        border-bottom: 1px solid #3474E2;
+        svg{
+            width: 24px;
+            height: 24px;
+            color: #686A73;
+        }
+    }
+}
