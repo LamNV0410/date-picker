@@ -28,9 +28,7 @@ export class DayCell extends React.Component {
     const { day } = this.props;
     const className = cx({ ...this.props });
     return <td className={className}
-      onClick={this.handleOnClick} onMouseEnter={this.handleOnMouseEnter}><span style={{display:'block'}} >{day.format("DD")}
-    </span>
-    </td >;
+      onClick={this.handleOnClick} onMouseEnter={this.handleOnMouseEnter}>{day.format("DD")}</td>;
   }
 }
 
@@ -40,7 +38,6 @@ export class WeekCell extends React.Component {
     return <td className="week">{week}</td>;
   }
 }
-
 
 export const cellMapper = {
   [unitType.DAY]: DayCell,

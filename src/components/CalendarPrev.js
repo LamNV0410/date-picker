@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Th } from "./Table";
-
+import { Box } from '@chakra-ui/react'
+import { ChevronLeftIcon } from '@chakra-ui/icons'
 export default class CalendarPrev extends React.Component {
   static propTypes = {
     prev: PropTypes.bool,
@@ -25,12 +25,16 @@ export default class CalendarPrev extends React.Component {
   render() {
     const { prev, calendar } = this.props;
     const className = classNames({ prev, available: prev });
-    const onClick = calendar ? this.handlePrev.bind(this, calendar) : () => {};
+    const onClick = calendar ? this.handlePrev.bind(this, calendar) : () => { };
     const Span = prev ? <span /> : null;
     const prevProps = {
       className,
       onClick
     };
-    return <Th {...prevProps}>{Span}</Th>;
+    return (
+      <Box style={{ width: '100%' }} onClick={onClick}>
+        <ChevronLeftIcon w={20} h={20} />
+      </Box>
+    )
   }
 }

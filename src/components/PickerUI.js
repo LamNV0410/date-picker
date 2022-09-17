@@ -15,6 +15,7 @@ export default class PickerUI extends React.Component {
 
 
     onDayClick = (day) => {
+        this.onClearSelection();
         const isOpen = this.state.closedOrOpen === interval.OPEN;
         const startDate = isOpen && this.state.startDate ? this.state.startDate : day;
         const endDate = isOpen && day >= startDate ? day : null;

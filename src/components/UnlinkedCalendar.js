@@ -15,24 +15,21 @@ class UnlinkedCalendar extends React.Component {
 
   state = {
     leftCalendar: dayjs(),
-    rightCalendar: dayjs().add(1, "month")
+    rightCalendar: dayjs().add(1, "month"),
+    isDisableRightButton: true
   };
 
   static defaultProps = {
     position: "left"
   };
 
-
-
   createProps = () => {
-
     const { leftCalendar, rightCalendar } = this.state;
     const leftState = Object.assign({}, this.props, { calendar: leftCalendar });
     const rightState = Object.assign({}, this.props, {
       calendar: rightCalendar
     });
 
-    const now = dayjs();
     let { type } = this.props
     if (type) {
       if (rightState.endDate && rightState.startDate && rightState.endDate?.month() != rightState.startDate?.month()) {
@@ -67,14 +64,26 @@ class UnlinkedCalendar extends React.Component {
   };
 
   handlePrev = leftCalendar => {
+    if (leftCalendar && leftCalendar >= this.state.rightCalendar) {
+      const rightCalendar = leftCalendar.add(1, "month")
+      this.setState({
+        rightCalendar
+      });
+    }
+
     this.setState({
       leftCalendar
     });
   };
 
   handleNext = rightCalendar => {
+    let isDisable = false;
+    if (rightCalendar && rightCalendar <= this.state.leftCalendar.add(1, 'month')) {
+      isDisable = true;
+    }
     this.setState({
-      rightCalendar
+      rightCalendar,
+      isDisableRightButton: isDisable
     });
   };
 
@@ -99,7 +108,7 @@ class UnlinkedCalendar extends React.Component {
         </div>
       </div>,
       <div className={className2} key={1}>
-        <div className="calendar-table">
+        <div className={this.state.isDisableRightButton ? 'calendar-table prev-right-disable' : 'calendar-table'}>
           <Table className="table-condensed">
             <CalendarHead {...rightProps} />
             <CalendarBody {...rightProps} />
@@ -119,8 +128,7 @@ class UnlinkedCalendar extends React.Component {
       <div
         className={className}
         style={{
-          left: "auto",
-          display: "block"
+          left: "auto"
         }}
       >
         {this.renderTable()}

@@ -159,7 +159,6 @@ input[type="text"] {
 
 .date-range-picker-calendar {
   margin: 20em 40em; // TODO : remove when apply it
-  width: 480px;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -171,12 +170,15 @@ input[type="text"] {
 
   .daterangepicker {
     margin: 24px 24px 0 0;
+    // position: absolute;
     color: inherit;
     background-color: #fff;
     border-radius: 4px;
+    // border: 1px solid #ddd;
     width: 278px;
     max-width: none;
-    display: flex;
+    display: none;
+    // font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   .daterangepicker.openscenter:before {
@@ -306,15 +308,15 @@ input[type="text"] {
     width: 100%;
     margin: 0;
     padding: 0;
-    border-spacing: 0 6px;
-    // border-collapse: collapse;
+    border-spacing: 0;
+    border-collapse: collapse;
   }
 
-  .daterangepicker td.available span:hover,
-  .daterangepicker th.available span:hover {
-    background-color: #0973EA;
+  .daterangepicker td.available:hover,
+  .daterangepicker th.available:hover {
+    background-color: #eee;
     border-color: transparent;
-    color: #FFFFFF;
+    color: inherit;
   }
 
   .daterangepicker td.week,
@@ -356,7 +358,6 @@ input[type="text"] {
     border-color: transparent;
     color: #fff;
     background-color: #0973EA;
-
     span {
       background-color: #0973EA;
     }
@@ -368,7 +369,7 @@ input[type="text"] {
 
   .daterangepicker th.month {
     width: auto;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
   }
 
@@ -549,37 +550,6 @@ input[type="text"] {
 
     .daterangepicker .drp-calendar.right {
       margin-left: 0;
-
-      .prev-right-disable {
-        .action-calendar-btn {
-          cursor: default;
-
-          div:first-child {
-            pointer-events: none;
-            cursor: none;
-          }
-        }
-      }
-    }
-
-    .action-calendar-btn {
-      display: flex;
-      width: 100%;
-      min-width: 48px;
-      line-height: 0;
-
-      div {
-        svg {
-          color: #C3C4CA;
-          cursor: pointer;
-          width: 24px;
-          height: 24px;
-        }
-
-        &:hover {
-          background: #DEDEDE 0% 0% no-repeat padding-box;
-        }
-      }
     }
 
     .daterangepicker .drp-calendar.right .calendar-table {
@@ -613,14 +583,9 @@ input[type="text"] {
   }
 
 
-  table.table-condensed {
+  .table-condensed {
     height: 189px;
     overflow: auto;
-    table-layout: fixed;
-    border-spacing: 6px 6px;
-    max-width: 224px;
-    font-size: 12px;
-    min-width: 140px;
 
     thead {
       tr:first-child {
@@ -641,42 +606,26 @@ input[type="text"] {
 
       tr:last-child {
         background: #F2F2F2 0% 0% no-repeat padding-box;
-        border-bottom: 6px solid white;
-        line-height: 0;
 
         th {
           text-align: center;
           font-weight: 400;
-          width: 20px;
-          height: 24px;
-          max-height: 20px;
         }
       }
     }
 
     tbody {
       tr:first-child {
-        border: none;
+        border-top: 6px solid white;
       }
 
       tr {
-        line-height: 20px;
-        border-top: 3px solid white;
-        border-bottom: 3px solid white;
+        border-bottom: 6px solid white;
 
         td {
-          padding: 0;
+          border-bottom: 5px solid white;
+          padding: 0 4px;
           width: 20px;
-          height: 20px;
-          max-height: 20px;
-
-          span {
-            width: 20px;
-            height: 20px;
-            display: block;
-            text-align: center;
-            margin: 0 auto;
-          }
         }
       }
     }

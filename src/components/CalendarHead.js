@@ -5,6 +5,7 @@ import { THead, Tr, Th } from "./Table";
 import CalendarNext from "./CalendarNext";
 import CalendarPrev from "./CalendarPrev";
 import CalendarTitle from "./CalendarTitle";
+import { Box } from "@chakra-ui/react"
 
 export default class CalendarHeader extends React.Component {
   static propTypes = {
@@ -94,8 +95,10 @@ export default class CalendarHeader extends React.Component {
       <THead>
         <Tr>
           {this.renderTitle()}
-          {this.renderPrev()}
-          {this.renderNext()}
+          <td className="action-calendar-btn">
+            {this.renderPrev()}
+            {this.renderNext()}
+          </td>
         </Tr>
         {this.renderWeeks()}
       </THead>

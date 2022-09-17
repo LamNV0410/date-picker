@@ -8,6 +8,7 @@
 
   .defined-range-header {
     padding-left: 24px;
+    padding-top: 4px;
     color: #303134;
     font-weight: 600;
     margin-bottom: 12px;
@@ -15,6 +16,7 @@
 
   .defined-range-content {
     min-width: 126px;
+    font-size: 14px;
 
     ul {
       list-style: none;
@@ -22,30 +24,27 @@
       margin: 0;
       text-align: left;
 
-
       li {
         cursor: pointer;
         padding: 0px 4px;
         height: 30px;
-        margin: 6px 0;
         list-style: none;
         text-align: left;
         display: flex;
         align-items: center;
         padding-left: 24px;
 
-        &:last-child {}
-
         &:hover {
           background: #DEDEDE 0% 0% no-repeat padding-box;
         }
 
         &.active {
-          
+
           background: #CCE5FF 0% 0% no-repeat padding-box;
         }
       }
     }
   }
+
 
 }
