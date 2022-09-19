@@ -14,9 +14,9 @@ class UnlinkedCalendar extends React.Component {
   };
 
   state = {
-    leftCalendar: dayjs(),
-    rightCalendar: dayjs().add(1, "month"),
-    isDisableRightButton: true
+    leftCalendar: this.props.startDate ?? dayjs(),
+    rightCalendar: this.props.endDate ?? dayjs().add(1, "month"),
+    isDisableRightButton: false
   };
 
   static defaultProps = {
@@ -24,7 +24,8 @@ class UnlinkedCalendar extends React.Component {
   };
 
   createProps = () => {
-    const { leftCalendar, rightCalendar } = this.state;
+    let { leftCalendar, rightCalendar } = this.state;
+    rightCalendar = rightCalendar && rightCalendar.month() === leftCalendar?.month() ? leftCalendar?.add(1, 'month') : rightCalendar;
     const leftState = Object.assign({}, this.props, { calendar: leftCalendar });
     const rightState = Object.assign({}, this.props, {
       calendar: rightCalendar
@@ -36,6 +37,7 @@ class UnlinkedCalendar extends React.Component {
         && rightState.endDate?.month() != rightState.startDate?.month()) {
         rightState.calendar = rightState.endDate
         leftState.calendar = rightState.startDate
+        type = null;
       }
     }
     const {

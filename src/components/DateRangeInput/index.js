@@ -13,7 +13,7 @@ function DateRangeInput(props) {
                 <InputGroup>
                     <Input isReadOnly type='input' _focusVisible={{
                         outline: "none",
-                    }} value={props.startDate ?? 'mm/dd/yy'} />
+                    }} value={props.startDate?.format("MM/DD/YY") ?? 'mm/dd/yy'} />
                     <InputRightElement
                         height="100%"
                         pointerEvents='none'
@@ -28,7 +28,7 @@ function DateRangeInput(props) {
                 <InputGroup>
                     <Input isReadOnly type='tel' _focusVisible={{
                         outline: "none"
-                    }} value={!props.endDate ? 'mm/dd/yy' : (props.endDate == dayjs().format('DD/MM/YY') ? 'Today' : props.endDate)} />
+                    }} value={!props.endDate ? 'mm/dd/yy' : (props.endDate?.format("MM/DD/YY") == dayjs().format('MM/DD/YY') ? 'Today' : props.endDate?.format("MM/DD/YY"))} />
                     <InputRightElement
                         height="100%"
                         pointerEvents='none'

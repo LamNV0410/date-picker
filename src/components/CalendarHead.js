@@ -73,7 +73,7 @@ export default class CalendarHeader extends React.Component {
   };
 
   renderWeeks = () => {
-    const { showWeekNumbers, showISOWeekNumbers, locale } = this.props;
+    const { locale } = this.props;
     const { weekNames, weekLabel } = locale;
     const showWeeks = false;
     const weeks = showWeeks ? [weekLabel].concat(weekNames) : weekNames;
