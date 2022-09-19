@@ -1,15 +1,21 @@
 import {
   Box
 } from '@chakra-ui/react'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './index.scss'
 import { getDefaultState } from "../utils";
 
 const Range = (props) => {
-  const { handleActiveClicked } = props;
+  const { handleActiveClicked, isActive } = props;
   const state = getDefaultState();
   const { rangesPresets } = state
+  const [isActiveState, setIsActiveState] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
+
+  useEffect(() => {
+    setIsActiveState(isActive);
+  }, [isActive])
+
   const handleRangeClicked = (index, id, name) => {
     setActiveIndex(index);
     handleActiveClicked(id, name);
@@ -21,7 +27,7 @@ const Range = (props) => {
           <li
             key={index}
             onClick={() => handleRangeClicked(index, range.id, range.name)}
-            className={activeIndex === index ? 'active' : ''}>
+            className={isActiveState && activeIndex === index ? 'active' : ''}>
             <span>{range.name}</span>
           </li>
         ))
@@ -31,7 +37,7 @@ const Range = (props) => {
 }
 
 function DefinedRange(props) {
-  const { onActiveClicked } = props;
+  const { onActiveClicked, isActive } = props;
   const handleActiveClicked = (id, value) => {
     onActiveClicked(id, value);
   }
@@ -42,7 +48,7 @@ function DefinedRange(props) {
       </Box>
       <Box className='defined-range-content'>
         <ul>
-          <Range handleActiveClicked={handleActiveClicked} />
+          <Range handleActiveClicked={handleActiveClicked} isActive={isActive} />
         </ul>
       </Box>
     </Box>

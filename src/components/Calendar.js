@@ -34,14 +34,12 @@ class Calendar extends React.Component {
   };
 
   handleNext = calendar => {
-    debugger;
     this.setState({
       calendar
     });
   };
 
   handlePrev = calendar => {
-    debugger;
     this.setState({
       calendar
     });

@@ -14,13 +14,18 @@ function App() {
     setStartDate(startDate?.format("DD/MM/YY"))
     setEndDate(endDate?.format("DD/MM/YY"));
   }
+
+  const handleClearSelection = () => {
+    setStartDate(null)
+    setEndDate(null)
+  }
   return (
     <ChakraProvider>
       <Box className='date-range-input-wrapper'>
         <DateRangeInput onDateRangeInputClick={onDateRangeInputClick} startDate={startDate} endDate={endDate} />
         {
           isOpenCalendar && <Box className="date-range-picker-calendar">
-            <UnlinkedCalendar showDropdowns={false} onDateRangeClick={onDateRangeClick} />
+            <UnlinkedCalendar showDropdowns={false} onDateRangeClick={onDateRangeClick} onClearSelection={handleClearSelection} />
           </Box>
         }
       </Box>

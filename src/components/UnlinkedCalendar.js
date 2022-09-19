@@ -30,9 +30,10 @@ class UnlinkedCalendar extends React.Component {
       calendar: rightCalendar
     });
 
-    let { type } = this.props
+    let { type } = this.props;
     if (type) {
-      if (rightState.endDate && rightState.startDate && rightState.endDate?.month() != rightState.startDate?.month()) {
+      if (rightState.endDate && rightState.startDate
+        && rightState.endDate?.month() != rightState.startDate?.month()) {
         rightState.calendar = rightState.endDate
         leftState.calendar = rightState.startDate
       }
@@ -64,16 +65,18 @@ class UnlinkedCalendar extends React.Component {
   };
 
   handlePrev = leftCalendar => {
+    let isDisable = false;
+    let rightCalendar = this.state.rightCalendar;
     if (leftCalendar && leftCalendar >= this.state.rightCalendar) {
-      const rightCalendar = leftCalendar.add(1, "month")
-      this.setState({
-        rightCalendar
-      });
+      rightCalendar = leftCalendar.add(1, 'month');
+      isDisable = true;
     }
-
     this.setState({
-      leftCalendar
+      leftCalendar,
+      rightCalendar,
+      isDisableRightButton: isDisable
     });
+
   };
 
   handleNext = rightCalendar => {
@@ -140,11 +143,16 @@ class UnlinkedCalendar extends React.Component {
 
 
 export default function UnlinkedCalendarUI(props) {
-  const onDateRangeClick = (startDate, endDate) => {
-    props.onDateRangeClick(startDate, endDate)
+  const { onDateRangeClick } = props;
+  const onHandleDateRangeClick = (startDate, endDate) => {
+    onDateRangeClick(startDate, endDate)
+  }
+
+  const handleClearSelection = () => {
+    props.onClearSelection();
   }
   const uiProps = { ...props, component: UnlinkedCalendar }
   return (
-    <PickerUI {...uiProps} onDateRangeClick={onDateRangeClick} />
+    <PickerUI {...uiProps} onDateRangeClick={onHandleDateRangeClick} onClearSelection={handleClearSelection} />
   );
 }
